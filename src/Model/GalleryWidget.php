@@ -12,6 +12,7 @@ class GalleryWidget extends Widget {
 	private static $title = 'Gallery';
 	private static $cmsTitle = 'Gallery';
 	private static $description = 'Include gallery items in your sidebar.';
+	private static $table_name = 'GallleryWidget';
 
 	private static $db = [
 		'ImagesCount' => 'Int',
