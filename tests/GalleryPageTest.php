@@ -2,6 +2,7 @@
 
 namespace Logicbrush\ImageGallery\Tests;
 
+use Logicbrush\ImageGallery\Model\GalleryPage;
 use SilverStripe\Dev\FunctionalTest;
 
 class GalleryPageTest extends FunctionalTest
@@ -9,22 +10,22 @@ class GalleryPageTest extends FunctionalTest
 	protected $usesDatabase = true;
 
 	public function testCanCreateGalleryPageTest() {
-		$amenityPage = GalleryPage::create();
-		$amenityPage->write();
+		$galleryPage = GalleryPage::create();
+		$galleryPage->write();
 
 		$this->assertEquals( 1, GalleryPage::get()->count() );
 	}
 
 
 	public function testDisplayingGalleryPage() {
-		$amenityPage = GalleryPage::create( [
+		$galleryPage = GalleryPage::create( [
 				'Title' => 'Gallery Page',
 				'Content' => '<p>Gallery</p>',
 			] );
-		$amenityPage->write();
-		$amenityPage->publish( 'Stage', 'Live' );
+		$galleryPage->write();
+		$galleryPage->publish( 'Stage', 'Live' );
 
-		$response = $this->get( $amenityPage->Link() );
+		$response = $this->get( $galleryPage->Link() );
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertPartialMatchBySelector( 'h1', [
 				'Gallery Page',
@@ -33,19 +34,19 @@ class GalleryPageTest extends FunctionalTest
 
 
 	public function testGetCMSFields() {
-		$amenityPage = GalleryPage::create();
-		$amenityPage->write();
+		$galleryPage = GalleryPage::create();
+		$galleryPage->write();
 
-		$fields = $amenityPage->getCMSFields();
+		$fields = $galleryPage->getCMSFields();
 		$this->assertNotNull( $fields );
 	}
 
 
 	public function testGetOGImage() {
-		$amenityPage = GalleryPage::create();
-		$amenityPage->write();
+		$galleryPage = GalleryPage::create();
+		$galleryPage->write();
 
-		$this->assertNull( $amenityPage->getOGImage() );
+		$this->assertNull( $galleryPage->getOGImage() );
 
 		$image1 = FakeImage::create();
 		$image1->write();
@@ -53,17 +54,17 @@ class GalleryPageTest extends FunctionalTest
 		$image2 = FakeImage::create();
 		$image2->write();
 
-		$amenityPage->Images()->add( $image1, ['SortOrder' => 2] );
-		$amenityPage->Images()->add( $image2, ['SortOrder' => 1] );
+		$galleryPage->Images()->add( $image1, ['SortOrder' => 2] );
+		$galleryPage->Images()->add( $image2, ['SortOrder' => 1] );
 
-		$this->assertNotNull( $amenityPage->getOGImage() );
-		$this->assertEquals( $image2->ID, $amenityPage->getOGImage()->ID );
+		$this->assertNotNull( $galleryPage->getOGImage() );
+		$this->assertEquals( $image2->ID, $galleryPage->getOGImage()->ID );
 
-		$amenityPage->Images()->add( $image1, ['SortOrder' => 1] );
-		$amenityPage->Images()->add( $image2, ['SortOrder' => 2] );
+		$galleryPage->Images()->add( $image1, ['SortOrder' => 1] );
+		$galleryPage->Images()->add( $image2, ['SortOrder' => 2] );
 
-		$this->assertNotNull( $amenityPage->getOGImage() );
-		$this->assertEquals( $image1->ID, $amenityPage->getOGImage()->ID );
+		$this->assertNotNull( $galleryPage->getOGImage() );
+		$this->assertEquals( $image1->ID, $galleryPage->getOGImage()->ID );
 	}
 
 

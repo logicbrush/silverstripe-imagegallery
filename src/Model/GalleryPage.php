@@ -47,13 +47,19 @@ class GalleryPage extends \Page {
 
 
 	public function getOGImage() {
+
 		foreach ( $this->SortedImages() as $image ) {
 			if ( $image->exists() ) {
 				return $image;
 			}
 		}
 
-		return parent::getOGImage();
+		foreach(class_parents($this) as $parent){
+			if(method_exists($parent, $method = __METHOD__ )) {
+				return parent::$method();
+			}
+		}
+
 	}
 
 	public function Content() {
