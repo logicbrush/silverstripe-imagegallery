@@ -5,6 +5,7 @@ namespace Logicbrush\ImageGallery\Model;
 use Bummzack\SortableFile\Forms\SortableUploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Forms\Tab;
+use SilverStripe\View\Requirements;
 
 
 class GalleryPage extends \Page {
