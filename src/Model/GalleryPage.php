@@ -33,16 +33,16 @@ class GalleryPage extends \Page {
 	public static function requirements() {
 
 		// Javascript files.
-		Requirements::javascript('logicbrush/silverstripe-gallery:thirdparty/photoswipe.min.js');
-		Requirements::javascript('logicbrush/silverstripe-gallery:thirdparty/photoswipe.min.js');
-		Requirements::javascript('logicbrush/silverstripe-gallery:thirdparty/photoswipe-ui-default.min.js');
-		Requirements::javascript('logicbrush/silverstripe-gallery:thirdparty/slick.min.js');
-		Requirements::javascript('logicbrush/silverstripe-gallery:javascript/gallery-page.js');
+		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
+		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
+		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-ui-default.min.js');
+		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/slick.min.js');
+		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/gallery-page.js');
 
 		// CSS files.
-		Requirements::css('logicbrush/silverstripe-gallery:thirdparty/photoswipe.css');
-		Requirements::css('logicbrush/silverstripe-gallery:thirdparty/photoswipe-default-skin/default-skin.css');
-		Requirements::css('logicbrush/silverstripe-gallery:thirdparty/slick.css');
+		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.css');
+		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-default-skin/default-skin.css');
+		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/slick.css');
 
 	}
 
