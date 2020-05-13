@@ -1,6 +1,6 @@
 <?php
 
-namespace Logicbrush\ImageGallery;
+namespace Logicbrush\ImageGallery\Model;
 
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\NumericField;

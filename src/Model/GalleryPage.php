@@ -1,13 +1,13 @@
 <?php
 
-namespace Logicbrush\ImageGallery;
+namespace Logicbrush\ImageGallery\Model;
 
 use Bummzack\SortableFile\Forms\SortableUploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Forms\Tab;
 
 
-class GalleryPage extends Page {
+class GalleryPage extends \Page {
 
 	private static $icon = 'mysite/images/treeicons/gallery-page.png';
 	private static $description = 'An image gallery.';
@@ -82,7 +82,7 @@ class GalleryPage extends Page {
 }
 
 
-class GalleryPageController extends PageController {
+class GalleryPageController extends \PageController {
 
 	public function init() {
 		parent::init();
