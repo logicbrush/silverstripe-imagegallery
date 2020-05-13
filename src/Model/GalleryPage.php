@@ -10,7 +10,7 @@ use SilverStripe\View\Requirements;
 
 class GalleryPage extends \Page {
 
-	private static $icon = 'mysite/images/treeicons/gallery-page.png';
+	private static $icon = 'logicbrush/silverstripe-imagegallery:images/treeicons/gallery-page.png';
 	private static $description = 'An image gallery.';
 	private static $singular_name = 'Gallery Page';
 	private static $plural_name = 'Gallery Pages';	
