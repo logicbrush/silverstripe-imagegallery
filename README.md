@@ -18,4 +18,5 @@ composer require "logicbrush/silverstripe-imagegallery"
 
 ## Usage
 
-TBD
+Install the module and you'll have a new page type of "Gallery Page".  In
+addition, this module adds a widget for displaying a gallery in a sidebar.
