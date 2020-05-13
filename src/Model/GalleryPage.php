@@ -13,7 +13,7 @@ class GalleryPage extends \Page {
 	private static $description = 'An image gallery.';
 	private static $singular_name = 'Gallery';
 	private static $plural_name = 'Galleries';	
-	private static $table_name = 'GallleryPage';
+	private static $table_name = 'GalleryPage';
 
 	private static $many_many = [
 		'Images' => Image::class,
