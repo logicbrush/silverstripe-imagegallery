@@ -15,7 +15,9 @@
 				"silverstripe/cms": "^4.0",
 				"silverstripe/asset-admin": "*",
 				"undefinedoffset/sortablegridfield": "*",
-				"jonom/focuspoint": "*"
+				"jonom/focuspoint": "*",
+				"silverstripe/widgets": "^2.0",
+				"bummzack/sortablefile": "^2.1"
 		},
 		"extra": {
 				"expose": [
