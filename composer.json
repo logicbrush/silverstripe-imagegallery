@@ -21,7 +21,8 @@
 		},
 		"extra": {
 				"expose": [
-						"thirdparty"
+						"thirdparty",
+						"javascript"
 				]
 		},
 		"require-dev": {

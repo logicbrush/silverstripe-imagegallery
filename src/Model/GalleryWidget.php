@@ -42,6 +42,9 @@ class GalleryWidget extends Widget {
 class GalleryWidgetController extends WidgetController {
 
 	public function Images() {
+
+		GalleryPage::requirements();
+
 		if ( ! $this->GalleryPage() ) {
 			return null;
 		}

@@ -11,8 +11,8 @@ class GalleryPage extends \Page {
 
 	private static $icon = 'mysite/images/treeicons/gallery-page.png';
 	private static $description = 'An image gallery.';
-	private static $singular_name = 'Gallery';
-	private static $plural_name = 'Galleries';	
+	private static $singular_name = 'Gallery Page';
+	private static $plural_name = 'Gallery Pages';	
 	private static $table_name = 'GalleryPage';
 
 	private static $many_many = [
@@ -29,12 +29,28 @@ class GalleryPage extends \Page {
 		'Images',
 	];
 
+	public static function requirements() {
+
+		// Javascript files.
+		Requirements::javascript('logicbrush/silverstripe-gallery:thirdparty/photoswipe.min.js');
+		Requirements::javascript('logicbrush/silverstripe-gallery:thirdparty/photoswipe.min.js');
+		Requirements::javascript('logicbrush/silverstripe-gallery:thirdparty/photoswipe-ui-default.min.js');
+		Requirements::javascript('logicbrush/silverstripe-gallery:thirdparty/slick.min.js');
+		Requirements::javascript('logicbrush/silverstripe-gallery:javascript/gallery-page.js');
+
+		// CSS files.
+		Requirements::css('logicbrush/silverstripe-gallery:thirdparty/photoswipe.css');
+		Requirements::css('logicbrush/silverstripe-gallery:thirdparty/photoswipe-default-skin/default-skin.css');
+		Requirements::css('logicbrush/silverstripe-gallery:thirdparty/slick.css');
+
+	}
+
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
 		$fields->insertAfter( 'Main', Tab::create( 'Gallery' ) );
 
-		$fields->addFieldToTab( 'Root.Gallery', $imageField = SortableUploadField::create( 'Images', 'Images' ) );
+		$fields->addFieldToTab( 'Root.Images', $imageField = SortableUploadField::create( 'Images', 'Images' ) );
 		$imageField->setFolderName( 'gallery' );
 
 		return $fields;
@@ -63,6 +79,9 @@ class GalleryPage extends \Page {
 	}
 
 	public function Content() {
+
+		self::requirements();
+
 		$content = $this->Content;
 
 		if ($this->Images()) {
