@@ -22,7 +22,8 @@
 		"extra": {
 				"expose": [
 						"thirdparty",
-						"javascript"
+						"javascript",
+						"images"
 				]
 		},
 		"require-dev": {
