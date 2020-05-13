@@ -1,0 +1,7 @@
+---
+Name: imagegallerylegacy
+---
+SilverStripe\ORM\DatabaseAdmin:
+  classname_value_remapping:
+    GalleryPage: Logicbrush\ImageGallery\Model\GalleryPage
+    GalleryWidget: Logicbrush\ImageGallery\Model\GalleryWidget
