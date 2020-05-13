@@ -32,17 +32,20 @@ class GalleryPage extends \Page {
 
 	public static function requirements() {
 
-		// Javascript files.
+		// Third-party javascripts.
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-ui-default.min.js');
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/slick.min.js');
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/gallery-page.js');
 
-		// CSS files.
+		// Third-party css.
 		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.css');
 		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-default-skin/default-skin.css');
 		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/slick.css');
+
+		// Our scripts.
+		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/photoswipe.js', [ 'defer' => true ]);
+		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/gallery-page.js', [ 'defer' => true ]);		
 
 	}
 
