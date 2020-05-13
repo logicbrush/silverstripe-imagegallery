@@ -1,0 +1,33 @@
+{
+		"name": "logicbrush/silverstripe-imagegallery",
+		"description": "A module for the SilverStripe CMS which allows you to organize images in a gallery format.",
+		"homepage": "https://www.logicbrush.com/specialities/silverstripe-development/",
+		"type": "silverstripe-vendormodule",
+		"keywords": [
+				"silverstripe"
+		],
+		"license": "BSD-3-Clause",
+		"authors": [{
+				"name": "John Learn",
+				"email": "jflearn@logicbrush.com"
+		}],
+		"require": {
+				"silverstripe/cms": "^4.0",
+				"silverstripe/asset-admin": "*",
+				"undefinedoffset/sortablegridfield": "*",
+				"jonom/focuspoint": "*"
+		},
+		"extra": {
+				"expose": [
+						"thirdparty"
+				]
+		},
+		"require-dev": {
+				"phpunit/phpunit": "^5.7"
+		},
+		"autoload": {
+				"psr-4": {
+						"Logicbrush\\ImageGallery\\": "src/"
+				}
+		}
+}

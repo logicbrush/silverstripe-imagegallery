@@ -1,0 +1,23 @@
+language: php
+
+matrix:
+  include:
+    - php: 7.2
+      env: DB=MYSQL PHPUNIT_TEST=1 PHPUNIT_COVERAGE_TEST=1
+
+services:
+  - mysql
+
+before_script:
+  
+  - composer install --prefer-dist
+
+script:
+  
+  - if [[ $PHPUNIT_TEST ]]; then vendor/bin/phpunit; fi
+  - if [[ $PHPUNIT_COVERAGE_TEST ]]; then phpdbg -qrr vendor/bin/phpunit --coverage-clover=coverage.xml; fi
+  - if [[ $PHPCS_TEST ]]; then vendor/bin/phpcs --standard=vendor/silverstripe/framework/phpcs.xml.dist src/ tests/; fi
+
+after_success:
+  
+  - bash <(curl -s https://codecov.io/bash)
