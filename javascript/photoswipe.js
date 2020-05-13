@@ -1,5 +1,6 @@
 if (document.querySelectorAll('.pwsp').length == 0) {
-    document.append(
+    document.body.insertAdjacentHTML(
+        'beforeend',
 '<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">\
 	<div class="pswp__bg"></div>\
 	<div class="pswp__scroll-wrap">\
