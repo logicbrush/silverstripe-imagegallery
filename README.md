@@ -9,7 +9,8 @@ in a gallery format.
 
 ## Why?
 
-TBD
+We needed a simple way to present a set of images that can be easily navigated
+on any device.
 
 ## Installation
 
@@ -19,5 +20,8 @@ composer require "logicbrush/silverstripe-imagegallery"
 
 ## Usage
 
-Install the module and you'll have a new page type of "Gallery Page".  In
-addition, this module adds a widget for displaying a gallery in a sidebar.
+Install the module and you'll have a new page type of "Gallery Page".  You can
+add and reorder images to the page from the "Images" tab in the CMS.
+
+In addition, this module provides a widget for displaying a gallery in a
+sidebar.  Add it to your WidgetArea and select the gallery you wish to display.
