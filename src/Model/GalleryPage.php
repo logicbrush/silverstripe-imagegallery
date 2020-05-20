@@ -13,7 +13,7 @@ class GalleryPage extends \Page {
 	private static $icon = 'logicbrush/silverstripe-imagegallery:images/treeicons/gallery-page.png';
 	private static $description = 'An image gallery.';
 	private static $singular_name = 'Gallery Page';
-	private static $plural_name = 'Gallery Pages';	
+	private static $plural_name = 'Gallery Pages';
 	private static $table_name = 'GalleryPage';
 
 	private static $many_many = [
@@ -34,7 +34,6 @@ class GalleryPage extends \Page {
 
 		// Third-party javascripts.
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-ui-default.min.js');
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/slick.min.js');
 
@@ -45,7 +44,7 @@ class GalleryPage extends \Page {
 
 		// Our scripts.
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/photoswipe.js', [ 'defer' => true ]);
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/gallery-page.js', [ 'defer' => true ]);		
+		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/gallery-page.js', [ 'defer' => true ]);
 
 	}
 
