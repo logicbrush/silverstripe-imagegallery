@@ -53,7 +53,7 @@ class GalleryPage extends \Page {
 
 		$fields->insertAfter( 'Main', Tab::create( 'Gallery' ) );
 
-		$fields->addFieldToTab( 'Root.Images', $imageField = SortableUploadField::create( 'Images', 'Images' ) );
+		$fields->addFieldToTab( 'Root.Gallery', $imageField = SortableUploadField::create( 'Images', 'Images' ) );
 		$imageField->setFolderName( 'gallery' );
 
 		return $fields;
