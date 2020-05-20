@@ -1,6 +1,4 @@
 var slickCarouselOptions = {
-
-	//lazyLoad: 'ondemand',
 	slickFilter: 'figure',
 	slidesToShow: 2,
 	slidesToScroll: 2,
@@ -23,7 +21,6 @@ var slickCarouselOptions = {
 };
 
 jQuery(document).ready(function() {
-
 
 	jQuery('.image-gallery').each( function() {
 		var imageGallery = jQuery(this);

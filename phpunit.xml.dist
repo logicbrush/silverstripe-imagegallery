@@ -10,10 +10,10 @@
       </exclude>
     </whitelist>
   </filter>
-	<logging>
+  <logging>
     <log type="coverage-clover" target="clover.xml"/>
   </logging>
-	<php>
-		<get name="flush" value="1" />
-	</php>
+  <php>
+    <get name="flush" value="1" />
+  </php>
 </phpunit>
