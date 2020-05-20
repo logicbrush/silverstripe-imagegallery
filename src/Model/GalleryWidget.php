@@ -45,7 +45,7 @@ class GalleryWidgetController extends WidgetController {
 
 		GalleryPage::requirements();
 
-		if ( ! $this->GalleryPage() ) {
+		if ( ! $this->GalleryPage() || ! $this->GalleryPage()->exists() ) {
 			return null;
 		}
 

@@ -27,9 +27,7 @@ class GalleryPageTest extends FunctionalTest
 
 		$response = $this->get( $galleryPage->Link() );
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertPartialMatchBySelector( 'h1', [
-				'Gallery Page',
-			] );
+		$this->assertNotContains( 'image-gallery', $response->getBody() );
 	}
 
 
@@ -39,6 +37,33 @@ class GalleryPageTest extends FunctionalTest
 
 		$fields = $galleryPage->getCMSFields();
 		$this->assertNotNull( $fields );
+	}
+
+
+	public function testContent() {
+		$galleryPage = GalleryPage::create( [
+				'Title' => 'Gallery Page',
+				'Content' => '<p>Gallery</p>',
+			] );
+		$galleryPage->write();
+		$galleryPage->publish( 'Stage', 'Live' );
+
+		$content = $galleryPage->Content();
+		$this->assertNotContains( 'image-gallery', $content );
+
+		$image1 = FakeImage::create();
+		$image1->write();
+
+		$image2 = FakeImage::create();
+		$image2->write();
+
+		$galleryPage->Images()->add( $image1, ['SortOrder' => 1] );
+		$galleryPage->Images()->add( $image2, ['SortOrder' => 2] );
+		$galleryPage->write();
+		$galleryPage->publish( 'Stage', 'Live' );
+
+		$content = $galleryPage->Content();
+		$this->assertContains( 'image-gallery', $content );
 	}
 
 
