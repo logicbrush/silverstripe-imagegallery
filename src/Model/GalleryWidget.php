@@ -49,7 +49,7 @@ class GalleryWidgetController extends WidgetController {
 			return null;
 		}
 
-		return $this->GalleryPage()->SortedImages(); //->limit( $this->ImagesCount );
+		return $this->GalleryPage()->SortedImages()->limit( $this->ImagesCount );
 	}
 
 
