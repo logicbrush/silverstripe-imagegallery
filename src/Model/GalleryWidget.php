@@ -45,11 +45,11 @@ class GalleryWidgetController extends WidgetController {
 
 		GalleryPage::requirements();
 
-		if ( ! $this->GalleryPage() ) {
+		if ( ! $this->GalleryPage() || ! $this->GalleryPage()->exists() ) {
 			return null;
 		}
 
-		return $this->GalleryPage()->SortedImages(); //->limit( $this->ImagesCount );
+		return $this->GalleryPage()->SortedImages()->limit( $this->ImagesCount );
 	}
 
 

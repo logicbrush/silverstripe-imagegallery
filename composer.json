@@ -4,7 +4,8 @@
 		"homepage": "https://www.logicbrush.com/specialities/silverstripe-development/",
 		"type": "silverstripe-vendormodule",
 		"keywords": [
-				"silverstripe"
+				"silverstripe",
+				"gallery"
 		],
 		"license": "BSD-3-Clause",
 		"authors": [{

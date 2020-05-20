@@ -4,16 +4,18 @@ namespace Logicbrush\ImageGallery\Model;
 
 use Bummzack\SortableFile\Forms\SortableUploadField;
 use SilverStripe\Assets\Image;
+use SilverStripe\Core\ClassInfo;
+use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Forms\Tab;
 use SilverStripe\View\Requirements;
-
+use SilverStripe\View\SSViewer;
 
 class GalleryPage extends \Page {
 
 	private static $icon = 'logicbrush/silverstripe-imagegallery:images/treeicons/gallery-page.png';
 	private static $description = 'An image gallery.';
 	private static $singular_name = 'Gallery Page';
-	private static $plural_name = 'Gallery Pages';	
+	private static $plural_name = 'Gallery Pages';
 	private static $table_name = 'GalleryPage';
 
 	private static $many_many = [
@@ -34,7 +36,6 @@ class GalleryPage extends \Page {
 
 		// Third-party javascripts.
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-ui-default.min.js');
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/slick.min.js');
 
@@ -45,7 +46,7 @@ class GalleryPage extends \Page {
 
 		// Our scripts.
 		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/photoswipe.js', [ 'defer' => true ]);
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/gallery-page.js', [ 'defer' => true ]);		
+		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/gallery-page.js', [ 'defer' => true ]);
 
 	}
 
@@ -54,7 +55,7 @@ class GalleryPage extends \Page {
 
 		$fields->insertAfter( 'Main', Tab::create( 'Gallery' ) );
 
-		$fields->addFieldToTab( 'Root.Images', $imageField = SortableUploadField::create( 'Images', 'Images' ) );
+		$fields->addFieldToTab( 'Root.Gallery', $imageField = SortableUploadField::create( 'Images', 'Images' ) );
 		$imageField->setFolderName( 'gallery' );
 
 		return $fields;
@@ -74,10 +75,8 @@ class GalleryPage extends \Page {
 			}
 		}
 
-		foreach(class_parents($this) as $parent){
-			if(method_exists($parent, $method = __METHOD__ )) {
-				return parent::$method();
-			}
+		if ( ClassInfo::hasMethod( Injector::inst()->get( 'Page' ), 'getOGImage' ) ) {
+			return parent::getOGImage();
 		}
 
 	}
@@ -89,24 +88,16 @@ class GalleryPage extends \Page {
 		$content = $this->Content;
 
 		if ($this->Images()) {
-			$pos = 0;
-			$content .= "<div class='image-gallery' itemscope itemtype='http://schema.org/ImageGallery'>";
-			foreach($this->SortedImages() as $image) {
-				$content .= "<figure class='item' itemprop='associatedMedia' itemscope itemtype='http://schema.org/ImageObject' data-index='{$pos}'>";
-				$content .= "<a href='{$image->FitMax(2000,2000)->URL}' itemprop='contentUrl' data-width='{$image->FitMax(1000,1000)->Width}' data-height='{$image->FitMax(1000,1000)->Height}' data-index='{$pos}' aria-label='{$this->he($image->Title)}'>";
-				$content .= "<img src='{$image->FocusFill(480,480)->URL}' width='480' height='480' itemprop='thumbnail' alt='{$this->he($image->Title)}' />";
-				$content .= "</a>";
-				$content .= "</figure>";
-				++$pos;
-			}
-			$content .= "</div>";
+			$template = new SSViewer('Logicbrush/ImageGallery/Includes/GalleryPageContent');
+
+			$data = [
+				'Images' => $this->SortedImages(),
+			];
+
+			$content .= $template->process($this->controller, $data);
 		}
 
 		return $content;
-	}
-
-	private function he($str) {
-		return htmlentities($str);
 	}
 
 }

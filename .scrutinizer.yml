@@ -1,8 +1,9 @@
 inherit: true
 
-tools:
-    external_code_coverage:
-      timeout: 600
+checks:
+  php:
+    code_rating: true
+    duplication: true
 
 filter:
-    paths: [tests/*,code/*]
+  paths: [src/*, tests/*]
