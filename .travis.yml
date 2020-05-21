@@ -1,22 +1,35 @@
 language: php
 
+env:
+  global:
+    - COMPOSER_ROOT_VERSION=5.0.x-dev
+
 matrix:
   include:
     - php: 7.2
-      env: DB=MYSQL PHPUNIT_TEST=1 PHPUNIT_COVERAGE_TEST=1
+      env: DB=PGSQL RECIPE_VERSION=4.3.6 PHPUNIT_TEST=1
+    - php: 7.2
+      env: DB=MYSQL RECIPE_VERSION=4.4.5 PHPUNIT_COVERAGE_TEST=1
+    - php: 7.3
+      env: DB=MYSQL RECIPE_VERSION=4.5.2 PHPUNIT_TEST=1
 
 services:
   - mysql
+  - postgresql
 
 before_script:
-  
-  - composer install --prefer-dist
+  - phpenv rehash
+  - phpenv config-rm xdebug.ini
+  - echo 'memory_limit=2G' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+
+  - composer validate
+  - composer require --no-update silverstripe/recipe-cms:$RECIPE_VERSION
+  - if [[ $DB == PGSQL ]]; then composer require --no-update silverstripe/postgresql:2.3.x-dev; fi
+  - composer install --prefer-dist --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
 
 script:
-  
   - if [[ $PHPUNIT_TEST ]]; then vendor/bin/phpunit; fi
-  - if [[ $PHPUNIT_COVERAGE_TEST ]]; then phpdbg -qrr vendor/bin/phpunit --coverage-clover=coverage.xml; fi
-  - if [[ $PHPCS_TEST ]]; then vendor/bin/phpcs --standard=vendor/silverstripe/framework/phpcs.xml.dist src/ tests/; fi
+  - if [[ $PHPUNIT_COVERAGE_TEST ]]; then phpdbg -qrr vendor/bin/phpunit --coverage-clover=coverage.xml -vvv; fi
 
 after_success:
   - if [[ $PHPUNIT_COVERAGE_TEST ]]; then bash <(curl -s https://codecov.io/bash) -f coverage.xml; fi
