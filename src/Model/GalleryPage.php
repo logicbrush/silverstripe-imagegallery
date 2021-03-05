@@ -7,6 +7,7 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Forms\Tab;
+use SilverStripe\ORM\ArrayList;
 use SilverStripe\View\Requirements;
 use SilverStripe\View\SSViewer;
 
@@ -63,7 +64,13 @@ class GalleryPage extends \Page {
 
 
 	public function SortedImages() {
-		return $this->Images()->Sort( 'SortOrder' );
+		$images = $this->Images();
+		foreach ($this->AllChildren() as $child) {
+			if ($child instanceof GalleryPage) {
+				$images->addMany($child->SortedImages());
+			}
+		}
+		return $images->sort( ['SortOrder' => 'ASC'] );
 	}
 
 
@@ -87,7 +94,7 @@ class GalleryPage extends \Page {
 
 		$content = $this->Content;
 
-		if ($this->Images()) {
+		if ($this->SortedImages()) {
 			$template = new SSViewer('Logicbrush/ImageGallery/Includes/GalleryPageContent');
 
 			$data = [
