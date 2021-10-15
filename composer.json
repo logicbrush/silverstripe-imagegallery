@@ -24,7 +24,8 @@
 		"expose": [
 			"images",
 			"javascript",
-			"thirdparty"
+			"thirdparty",
+			"tests"
 		]
 	},
 	"require-dev": {
@@ -37,7 +38,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-				"Logicbrush\\ImageGallery\\Tests\\": "tests/"
+			"Logicbrush\\ImageGallery\\Tests\\": "tests/"
 		}
 	}
 }
