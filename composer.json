@@ -8,10 +8,12 @@
 		"gallery"
 	],
 	"license": "BSD-3-Clause",
-	"authors": [{
-		"name": "John Learn",
-		"email": "jflearn@logicbrush.com"
-	}],
+	"authors": [
+		{
+			"name": "John Learn",
+			"email": "jflearn@logicbrush.com"
+		}
+	],
 	"require": {
 		"silverstripe/cms": "^4.0",
 		"silverstripe/asset-admin": "*",
