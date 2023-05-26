@@ -40,6 +40,7 @@ class GalleryPage extends \Page {
 
 	/**
 	 *
+	 * @Metrics( crap = 1 )
 	 */
 	public static function requirements() {
 
@@ -62,6 +63,7 @@ class GalleryPage extends \Page {
 
 	/**
 	 *
+	 * @Metrics( crap = 1 )
 	 * @return unknown
 	 */
 	public function getCMSFields() {
@@ -78,6 +80,7 @@ class GalleryPage extends \Page {
 
 	/**
 	 *
+	 * @Metrics( crap = 3.58 )
 	 * @return unknown
 	 */
 	public function SortedImages() {
@@ -93,6 +96,7 @@ class GalleryPage extends \Page {
 
 	/**
 	 *
+	 * @Metrics( crap = 4.13 )
 	 * @return unknown
 	 */
 	public function getOGImage() {
@@ -109,18 +113,23 @@ class GalleryPage extends \Page {
 
 	}
 
+
+	/**
+	 *
+	 * @return unknown
+	 */
 	public function GalleryContent() : ?string {
 
 		self::requirements();
 
-		if ($this->SortedImages()) {
-			$template = new SSViewer('Logicbrush/ImageGallery/Includes/GalleryPageContent');
+		if ( $this->SortedImages() ) {
+			$template = new SSViewer( 'Logicbrush/ImageGallery/Includes/GalleryPageContent' );
 
 			$data = [
 				'Images' => $this->SortedImages(),
 			];
 
-			return $template->process($this->controller, $data);
+			return $template->process( $this->controller, $data );
 		}
 
 		return null;
@@ -132,6 +141,10 @@ class GalleryPage extends \Page {
 
 class GalleryPageController extends \PageController {
 
+	/**
+	 *
+	 * @return unknown
+	 */
 	public function index() {
 		return [
 			'Content' => $this->Content . $this->GalleryContent(),
