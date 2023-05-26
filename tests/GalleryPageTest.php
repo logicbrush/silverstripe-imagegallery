@@ -27,7 +27,7 @@ class GalleryPageTest extends FunctionalTest
 
 		$response = $this->get( $galleryPage->Link() );
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertNotContains( 'image-gallery', $response->getBody() );
+		$this->assertStringNotContainsString( 'image-gallery', $response->getBody() );
 
 		$image1 = FakeImage::create();
 		$image1->Filename = 'image1.jpg';
@@ -68,7 +68,7 @@ class GalleryPageTest extends FunctionalTest
 		$galleryPage->publish( 'Stage', 'Live' );
 
 		$content = $galleryPage->Content();
-		$this->assertNotContains( 'image-gallery', $content );
+		$this->assertStringNotContainsString( 'image-gallery', $content );
 
 		$image1 = FakeImage::create();
 		$image1->Filename = 'image1.jpg';
