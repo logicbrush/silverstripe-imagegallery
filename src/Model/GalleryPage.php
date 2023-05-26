@@ -13,6 +13,7 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Forms\Tab;
+use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\View\Requirements;
 use SilverStripe\View\SSViewer;
 
@@ -149,7 +150,10 @@ class GalleryPageController extends \PageController {
 	 */
 	public function index() {
 		return [
-			'Content' => $this->Content . $this->GalleryContent(),
+			'Content' => DBField::create_field(
+				'HTMLText',
+				$this->Content . $this->GalleryContent()
+			),
 		];
 	}
 
