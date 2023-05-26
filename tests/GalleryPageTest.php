@@ -46,7 +46,7 @@ class GalleryPageTest extends FunctionalTest
 
 		$response = $this->get( $galleryPage->Link() );
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertContains( 'image-gallery', $response->getBody() );
+		$this->assertStringContainsString( 'image-gallery', $response->getBody() );
 	}
 
 
@@ -86,7 +86,7 @@ class GalleryPageTest extends FunctionalTest
 		$galleryPage->publish( 'Stage', 'Live' );
 
 		$content = $galleryPage->Content();
-		$this->assertContains( 'image-gallery', $content );
+		$this->assertStringContainsString( 'image-gallery', $content );
 	}
 
 
