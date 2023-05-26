@@ -1,19 +1,26 @@
-<phpunit bootstrap="vendor/silverstripe/cms/tests/bootstrap.php" colors="true">
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/silverstripe/cms/tests/bootstrap.php" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage includeUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">src/</directory>
+    </include>
+    <exclude>
+      <directory suffix=".php">tests/</directory>
+    </exclude>
+    <report>
+      <clover outputFile="clover.xml"/>
+    </report>
+  </coverage>
   <testsuite name="Default">
     <directory>tests/</directory>
   </testsuite>
-  <filter>
-    <whitelist addUncoveredFilesFromWhitelist="true">
-      <directory suffix=".php">src/</directory>
-      <exclude>
-        <directory suffix=".php">tests/</directory>
-      </exclude>
-    </whitelist>
-  </filter>
-  <logging>
-    <log type="coverage-clover" target="clover.xml"/>
-  </logging>
+  <logging/>
   <php>
-    <get name="flush" value="1" />
+    <includePath>app/code</includePath>
+    <env name="SS_DATABASE_CLASS" value="SQLite3Database"/>
+    <env name="SS_SQLITE_DATABASE_PATH" value=":memory:"/>
+    <env name="SS_DATABASE_NAME" value="testing"/>
+    <env name="SS_DATABASE_USERNAME" value=""/>
+    <env name="SS_DATABASE_PASSWORD" value=""/>
   </php>
 </phpunit>
