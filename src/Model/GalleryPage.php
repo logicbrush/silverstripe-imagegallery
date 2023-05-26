@@ -13,7 +13,6 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Forms\Tab;
-use SilverStripe\ORM\ArrayList;
 use SilverStripe\View\Requirements;
 use SilverStripe\View\SSViewer;
 
@@ -110,28 +109,21 @@ class GalleryPage extends \Page {
 
 	}
 
-
-	/**
-	 *
-	 * @return unknown
-	 */
-	public function Content() {
+	public function GalleryContent() : ?string {
 
 		self::requirements();
 
-		$content = $this->Content;
-
-		if ( $this->SortedImages() ) {
-			$template = new SSViewer( 'Logicbrush/ImageGallery/Includes/GalleryPageContent' );
+		if ($this->SortedImages()) {
+			$template = new SSViewer('Logicbrush/ImageGallery/Includes/GalleryPageContent');
 
 			$data = [
 				'Images' => $this->SortedImages(),
 			];
 
-			$content .= $template->process( $this->controller, $data );
+			return $template->process($this->controller, $data);
 		}
 
-		return $content;
+		return null;
 	}
 
 
@@ -140,12 +132,10 @@ class GalleryPage extends \Page {
 
 class GalleryPageController extends \PageController {
 
-	/**
-	 *
-	 */
-	public function init() {
-		parent::init();
-
+	public function index() {
+		return [
+			'Content' => $this->Content . $this->GalleryContent(),
+		];
 	}
 
 
