@@ -85,7 +85,7 @@ class GalleryPageTest extends FunctionalTest
 		$galleryPage->write();
 		$galleryPage->publish( 'Stage', 'Live' );
 
-		$content = $galleryPage->GaleryPageContent();
+		$content = $galleryPage->GalleryContent();
 		$this->assertStringNotContainsString( 'image-gallery', $content );
 
 		$image1 = FakeImage::create();
@@ -103,7 +103,7 @@ class GalleryPageTest extends FunctionalTest
 		$galleryPage->write();
 		$galleryPage->publish( 'Stage', 'Live' );
 
-		$content = $galleryPage->GaleryPageContent();
+		$content = $galleryPage->GalleryContent();
 		$this->assertStringContainsString( 'image-gallery', $content );
 	}
 
