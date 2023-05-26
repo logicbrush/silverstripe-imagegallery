@@ -8,29 +8,29 @@
 		"gallery"
 	],
 	"license": "BSD-3-Clause",
-	"authors": [
-		{
-			"name": "John Learn",
-			"email": "jflearn@logicbrush.com"
-		}
-	],
+	"authors": [{
+		"name": "John Learn",
+		"email": "jflearn@logicbrush.com"
+	}],
 	"require": {
+		"php": "^7.4||^8.0",
 		"silverstripe/cms": "^4.0",
-		"silverstripe/asset-admin": "*",
-		"undefinedoffset/sortablegridfield": "*",
-		"jonom/focuspoint": "*",
-		"silverstripe/widgets": "^2.0",
-		"bummzack/sortablefile": "^2.1"
+		"jonom/focuspoint": "^4.0",
+		"silverstripe/widgets": "^2.4",
+		"bummzack/sortablefile": "^2.2"
 	},
 	"extra": {
 		"expose": [
+			"css",
 			"images",
-			"javascript",
-			"thirdparty"
+			"javascript"
 		]
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^5.7"
+		"phpunit/phpunit": "^9.5",
+		"silverstripe/sqlite3": "^2.2",
+		"logicbrush/metrics": "^0.2.0",
+		"cmrcx/phptidy": "^3.3"
 	},
 	"autoload": {
 		"psr-4": {
@@ -40,6 +40,12 @@
 	"autoload-dev": {
 		"psr-4": {
 			"Logicbrush\\ImageGallery\\Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true,
+			"silverstripe/vendor-plugin": true
 		}
 	}
 }

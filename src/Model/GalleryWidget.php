@@ -1,4 +1,10 @@
 <?php
+/**
+ * src/Model/GalleryWidget.php
+ *
+ * @package default
+ */
+
 
 namespace Logicbrush\ImageGallery\Model;
 
@@ -26,6 +32,11 @@ class GalleryWidget extends Widget {
 		'ImagesCount' => '4',
 	];
 
+
+	/**
+	 *
+	 * @return unknown
+	 */
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
 
@@ -41,6 +52,10 @@ class GalleryWidget extends Widget {
 
 class GalleryWidgetController extends WidgetController {
 
+	/**
+	 *
+	 * @return unknown
+	 */
 	public function Images() {
 
 		GalleryPage::requirements();

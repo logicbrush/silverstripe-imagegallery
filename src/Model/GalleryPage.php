@@ -1,4 +1,10 @@
 <?php
+/**
+ * src/Model/GalleryPage.php
+ *
+ * @package default
+ */
+
 
 namespace Logicbrush\ImageGallery\Model;
 
@@ -7,7 +13,7 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Forms\Tab;
-use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\View\Requirements;
 use SilverStripe\View\SSViewer;
 
@@ -33,24 +39,34 @@ class GalleryPage extends \Page {
 		'Images',
 	];
 
+	/**
+	 *
+	 * @Metrics( crap = 1 )
+	 */
 	public static function requirements() {
 
 		// Third-party javascripts.
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-ui-default.min.js');
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/slick.min.js');
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js' );
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-ui-default.min.js' );
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:thirdparty/slick.min.js' );
 
 		// Third-party css.
-		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.css');
-		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-default-skin/default-skin.css');
-		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/slick.css');
+		Requirements::css( 'logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.css' );
+		Requirements::css( 'logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-default-skin/default-skin.css' );
+		Requirements::css( 'logicbrush/silverstripe-imagegallery:thirdparty/slick.css' );
 
 		// Our scripts.
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/photoswipe.js', [ 'defer' => true ]);
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/gallery-page.js', [ 'defer' => true ]);
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:javascript/photoswipe.js', [ 'defer' => true ] );
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:javascript/gallery-page.js', [ 'defer' => true ] );
 
 	}
 
+
+	/**
+	 *
+	 * @Metrics( crap = 1 )
+	 * @return unknown
+	 */
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
@@ -63,17 +79,27 @@ class GalleryPage extends \Page {
 	}
 
 
+	/**
+	 *
+	 * @Metrics( crap = 3.58 )
+	 * @return unknown
+	 */
 	public function SortedImages() {
 		$images = $this->Images();
-		foreach ($this->AllChildren() as $child) {
-			if ($child instanceof GalleryPage) {
-				$images->addMany($child->SortedImages());
+		foreach ( $this->AllChildren() as $child ) {
+			if ( $child instanceof GalleryPage ) {
+				$images->addMany( $child->SortedImages() );
 			}
 		}
 		return $images->sort( ['SortOrder' => 'ASC'] );
 	}
 
 
+	/**
+	 *
+	 * @Metrics( crap = 4.13 )
+	 * @return unknown
+	 */
 	public function getOGImage() {
 
 		foreach ( $this->SortedImages() as $image ) {
@@ -88,33 +114,47 @@ class GalleryPage extends \Page {
 
 	}
 
-	public function Content() {
+
+	/**
+	 *
+	 * @Metrics( crap = 2.01 )
+	 * @return unknown
+	 */
+	public function GalleryContent() : ?string {
 
 		self::requirements();
 
-		$content = $this->Content;
-
-		if ($this->SortedImages()) {
-			$template = new SSViewer('Logicbrush/ImageGallery/Includes/GalleryPageContent');
+		if ( $this->SortedImages() ) {
+			$template = new SSViewer( 'Logicbrush/ImageGallery/Includes/GalleryPageContent' );
 
 			$data = [
 				'Images' => $this->SortedImages(),
 			];
 
-			$content .= $template->process($this->controller, $data);
+			return $template->process( $this->controller, $data );
 		}
 
-		return $content;
+		return null;
 	}
+
 
 }
 
 
 class GalleryPageController extends \PageController {
 
-	public function init() {
-		parent::init();
-
+	/**
+	 *
+	 * @Metrics( crap = 1 )
+	 * @return unknown
+	 */
+	public function index() {
+		return [
+			'Content' => DBField::create_field(
+				'HTMLText',
+				$this->Content . $this->GalleryContent()
+			),
+		];
 	}
 
 

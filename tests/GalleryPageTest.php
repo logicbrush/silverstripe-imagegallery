@@ -1,4 +1,10 @@
 <?php
+/**
+ * tests/GalleryPageTest.php
+ *
+ * @package default
+ */
+
 
 namespace Logicbrush\ImageGallery\Tests;
 
@@ -9,6 +15,9 @@ class GalleryPageTest extends FunctionalTest
 {
 	protected $usesDatabase = true;
 
+	/**
+	 *
+	 */
 	public function testCanCreateGalleryPageTest() {
 		$galleryPage = GalleryPage::create();
 		$galleryPage->write();
@@ -17,6 +26,9 @@ class GalleryPageTest extends FunctionalTest
 	}
 
 
+	/**
+	 *
+	 */
 	public function testDisplayingGalleryPage() {
 		$galleryPage = GalleryPage::create( [
 				'Title' => 'Gallery Page',
@@ -27,7 +39,7 @@ class GalleryPageTest extends FunctionalTest
 
 		$response = $this->get( $galleryPage->Link() );
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertNotContains( 'image-gallery', $response->getBody() );
+		$this->assertStringNotContainsString( 'image-gallery', $response->getBody() );
 
 		$image1 = FakeImage::create();
 		$image1->Filename = 'image1.jpg';
@@ -46,10 +58,13 @@ class GalleryPageTest extends FunctionalTest
 
 		$response = $this->get( $galleryPage->Link() );
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertContains( 'image-gallery', $response->getBody() );
+		$this->assertStringContainsString( 'image-gallery', $response->getBody() );
 	}
 
 
+	/**
+	 *
+	 */
 	public function testGetCMSFields() {
 		$galleryPage = GalleryPage::create();
 		$galleryPage->write();
@@ -59,6 +74,9 @@ class GalleryPageTest extends FunctionalTest
 	}
 
 
+	/**
+	 *
+	 */
 	public function testContent() {
 		$galleryPage = GalleryPage::create( [
 				'Title' => 'Gallery Page',
@@ -67,8 +85,8 @@ class GalleryPageTest extends FunctionalTest
 		$galleryPage->write();
 		$galleryPage->publish( 'Stage', 'Live' );
 
-		$content = $galleryPage->Content();
-		$this->assertNotContains( 'image-gallery', $content );
+		$content = $galleryPage->GalleryContent();
+		$this->assertStringNotContainsString( 'image-gallery', $content );
 
 		$image1 = FakeImage::create();
 		$image1->Filename = 'image1.jpg';
@@ -85,11 +103,14 @@ class GalleryPageTest extends FunctionalTest
 		$galleryPage->write();
 		$galleryPage->publish( 'Stage', 'Live' );
 
-		$content = $galleryPage->Content();
-		$this->assertContains( 'image-gallery', $content );
+		$content = $galleryPage->GalleryContent();
+		$this->assertStringContainsString( 'image-gallery', $content );
 	}
 
 
+	/**
+	 *
+	 */
 	public function testGetOGImage() {
 		$galleryPage = GalleryPage::create();
 		$galleryPage->write();

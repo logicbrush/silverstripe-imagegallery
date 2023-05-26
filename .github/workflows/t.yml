@@ -1,0 +1,39 @@
+name: "Annotate & Tidy"
+
+on: 
+  push:
+    branches:
+      - "feature/*"
+      - "release/*"
+      - "develop"
+
+jobs:
+
+  tidy:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: php-actions/composer@v6
+        with:
+          php_extensions: xdebug intl
+      - name: Generate Code Coverage
+        run: |
+          XDEBUG_MODE=coverage \
+          ./vendor/bin/phpunit -c phpunit.xml.dist \
+          --coverage-clover ./coverage.xml
+      - name: Annotate with Metrics
+        run: |
+          find src -name "*.php" | xargs ./vendor/bin/metrics annotate ./coverage.xml
+      - name: Tidy Source Code
+        run: |
+          find tests -name "*.php" | xargs ./vendor/bin/phptidy.php replace
+          find src -name "*.php" | xargs ./vendor/bin/phptidy.php replace
+      - name: Push Back Changes
+        run: |
+          git diff --exit-code src tests || ( \
+            git config user.name github-actions && \
+            git config user.email github-actions@github.com && \
+            git add src && git add tests && \
+            git commit -m "tidy" && \
+            git push \
+          )
