@@ -116,6 +116,7 @@ class GalleryPage extends \Page {
 
 	/**
 	 *
+	 * @Metrics( crap = 2.01 )
 	 * @return unknown
 	 */
 	public function GalleryContent() : ?string {
@@ -143,6 +144,7 @@ class GalleryPageController extends \PageController {
 
 	/**
 	 *
+	 * @Metrics( crap = 1 )
 	 * @return unknown
 	 */
 	public function index() {
