@@ -1,4 +1,10 @@
 <?php
+/**
+ * tests/GalleryWidgetTest.php
+ *
+ * @package default
+ */
+
 
 namespace Logicbrush\ImageGallery\Tests;
 
@@ -12,6 +18,9 @@ class GalleryWidgetTest extends FunctionalTest
 {
 	protected $usesDatabase = true;
 
+	/**
+	 *
+	 */
 	public function testCanCreateGalleryWidgetTest() {
 		$galleryWidget = GalleryWidget::create();
 		$galleryWidget->write();
@@ -20,6 +29,9 @@ class GalleryWidgetTest extends FunctionalTest
 	}
 
 
+	/**
+	 *
+	 */
 	public function testGetCMSFields() {
 		$galleryWidget = GalleryWidget::create();
 		$galleryWidget->write();
@@ -29,6 +41,9 @@ class GalleryWidgetTest extends FunctionalTest
 	}
 
 
+	/**
+	 *
+	 */
 	public function testContent() {
 		$galleryPage = GalleryPage::create();
 		$galleryPage->Title = 'Gallery Page';
@@ -39,7 +54,7 @@ class GalleryWidgetTest extends FunctionalTest
 		$galleryWidget = GalleryWidget::create();
 		$galleryWidget->write();
 
-		$galleryWidgetController = GalleryWidgetController::create($galleryWidget);
+		$galleryWidgetController = GalleryWidgetController::create( $galleryWidget );
 		$galleryWidgetController->write();
 
 		$this->assertNull( $galleryWidgetController->Images() );

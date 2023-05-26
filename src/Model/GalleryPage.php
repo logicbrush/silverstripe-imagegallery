@@ -1,4 +1,10 @@
 <?php
+/**
+ * src/Model/GalleryPage.php
+ *
+ * @package default
+ */
+
 
 namespace Logicbrush\ImageGallery\Model;
 
@@ -33,24 +39,32 @@ class GalleryPage extends \Page {
 		'Images',
 	];
 
+	/**
+	 *
+	 */
 	public static function requirements() {
 
 		// Third-party javascripts.
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js');
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-ui-default.min.js');
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:thirdparty/slick.min.js');
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.min.js' );
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-ui-default.min.js' );
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:thirdparty/slick.min.js' );
 
 		// Third-party css.
-		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.css');
-		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-default-skin/default-skin.css');
-		Requirements::css('logicbrush/silverstripe-imagegallery:thirdparty/slick.css');
+		Requirements::css( 'logicbrush/silverstripe-imagegallery:thirdparty/photoswipe.css' );
+		Requirements::css( 'logicbrush/silverstripe-imagegallery:thirdparty/photoswipe-default-skin/default-skin.css' );
+		Requirements::css( 'logicbrush/silverstripe-imagegallery:thirdparty/slick.css' );
 
 		// Our scripts.
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/photoswipe.js', [ 'defer' => true ]);
-		Requirements::javascript('logicbrush/silverstripe-imagegallery:javascript/gallery-page.js', [ 'defer' => true ]);
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:javascript/photoswipe.js', [ 'defer' => true ] );
+		Requirements::javascript( 'logicbrush/silverstripe-imagegallery:javascript/gallery-page.js', [ 'defer' => true ] );
 
 	}
 
+
+	/**
+	 *
+	 * @return unknown
+	 */
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
@@ -63,17 +77,25 @@ class GalleryPage extends \Page {
 	}
 
 
+	/**
+	 *
+	 * @return unknown
+	 */
 	public function SortedImages() {
 		$images = $this->Images();
-		foreach ($this->AllChildren() as $child) {
-			if ($child instanceof GalleryPage) {
-				$images->addMany($child->SortedImages());
+		foreach ( $this->AllChildren() as $child ) {
+			if ( $child instanceof GalleryPage ) {
+				$images->addMany( $child->SortedImages() );
 			}
 		}
 		return $images->sort( ['SortOrder' => 'ASC'] );
 	}
 
 
+	/**
+	 *
+	 * @return unknown
+	 */
 	public function getOGImage() {
 
 		foreach ( $this->SortedImages() as $image ) {
@@ -88,30 +110,39 @@ class GalleryPage extends \Page {
 
 	}
 
+
+	/**
+	 *
+	 * @return unknown
+	 */
 	public function Content() {
 
 		self::requirements();
 
 		$content = $this->Content;
 
-		if ($this->SortedImages()) {
-			$template = new SSViewer('Logicbrush/ImageGallery/Includes/GalleryPageContent');
+		if ( $this->SortedImages() ) {
+			$template = new SSViewer( 'Logicbrush/ImageGallery/Includes/GalleryPageContent' );
 
 			$data = [
 				'Images' => $this->SortedImages(),
 			];
 
-			$content .= $template->process($this->controller, $data);
+			$content .= $template->process( $this->controller, $data );
 		}
 
 		return $content;
 	}
+
 
 }
 
 
 class GalleryPageController extends \PageController {
 
+	/**
+	 *
+	 */
 	public function init() {
 		parent::init();
 

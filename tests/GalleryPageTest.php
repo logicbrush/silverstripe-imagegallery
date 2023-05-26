@@ -1,4 +1,10 @@
 <?php
+/**
+ * tests/GalleryPageTest.php
+ *
+ * @package default
+ */
+
 
 namespace Logicbrush\ImageGallery\Tests;
 
@@ -9,6 +15,9 @@ class GalleryPageTest extends FunctionalTest
 {
 	protected $usesDatabase = true;
 
+	/**
+	 *
+	 */
 	public function testCanCreateGalleryPageTest() {
 		$galleryPage = GalleryPage::create();
 		$galleryPage->write();
@@ -17,6 +26,9 @@ class GalleryPageTest extends FunctionalTest
 	}
 
 
+	/**
+	 *
+	 */
 	public function testDisplayingGalleryPage() {
 		$galleryPage = GalleryPage::create( [
 				'Title' => 'Gallery Page',
@@ -50,6 +62,9 @@ class GalleryPageTest extends FunctionalTest
 	}
 
 
+	/**
+	 *
+	 */
 	public function testGetCMSFields() {
 		$galleryPage = GalleryPage::create();
 		$galleryPage->write();
@@ -59,6 +74,9 @@ class GalleryPageTest extends FunctionalTest
 	}
 
 
+	/**
+	 *
+	 */
 	public function testContent() {
 		$galleryPage = GalleryPage::create( [
 				'Title' => 'Gallery Page',
@@ -90,6 +108,9 @@ class GalleryPageTest extends FunctionalTest
 	}
 
 
+	/**
+	 *
+	 */
 	public function testGetOGImage() {
 		$galleryPage = GalleryPage::create();
 		$galleryPage->write();
