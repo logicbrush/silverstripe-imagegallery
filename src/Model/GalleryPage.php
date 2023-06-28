@@ -90,7 +90,7 @@ class GalleryPage extends \Page {
 
 	/**
 	 *
-	 * @Metrics( crap = 3.58 )
+	 * @Metrics( crap = 4.59 )
 	 * @return unknown
 	 */
 	public function SortedImages() {
@@ -100,7 +100,7 @@ class GalleryPage extends \Page {
 				$images->addMany( $child->SortedImages() );
 			}
 		}
-		$sort = ($this->SortBy == 'Newest First') ? ['Created' => 'DESC'] : ['SortOrder' => 'ASC'];
+		$sort = ( $this->SortBy == 'Newest First' ) ? ['Created' => 'DESC'] : ['SortOrder' => 'ASC'];
 		return $images->sort( $sort );
 	}
 
