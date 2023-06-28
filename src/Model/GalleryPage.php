@@ -12,6 +12,7 @@ use Bummzack\SortableFile\Forms\SortableUploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\Tab;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\View\Requirements;
@@ -24,6 +25,10 @@ class GalleryPage extends \Page {
 	private static $singular_name = 'Gallery Page';
 	private static $plural_name = 'Gallery Pages';
 	private static $table_name = 'GalleryPage';
+
+	private static $db = [
+		'SortBy' => "Enum('Position, Newest First', 'Position')",
+	];
 
 	private static $many_many = [
 		'Images' => Image::class,
@@ -71,9 +76,13 @@ class GalleryPage extends \Page {
 		$fields = parent::getCMSFields();
 
 		$fields->insertAfter( 'Main', Tab::create( 'Gallery' ) );
-
 		$fields->addFieldToTab( 'Root.Gallery', $imageField = SortableUploadField::create( 'Images', 'Images' ) );
 		$imageField->setFolderName( 'gallery' );
+
+		$fields->insertBefore(
+			'Images',
+			DropdownField::create( 'SortBy', 'Sort By', singleton( GalleryPage::class )->dbObject( 'SortBy' )->enumValues() )
+		);
 
 		return $fields;
 	}
@@ -81,7 +90,7 @@ class GalleryPage extends \Page {
 
 	/**
 	 *
-	 * @Metrics( crap = 3.58 )
+	 * @Metrics( crap = 4.59 )
 	 * @return unknown
 	 */
 	public function SortedImages() {
@@ -91,7 +100,8 @@ class GalleryPage extends \Page {
 				$images->addMany( $child->SortedImages() );
 			}
 		}
-		return $images->sort( ['SortOrder' => 'ASC'] );
+		$sort = ( $this->SortBy == 'Newest First' ) ? ['Created' => 'DESC'] : ['SortOrder' => 'ASC'];
+		return $images->sort( $sort );
 	}
 
 

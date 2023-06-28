@@ -1,9 +1,5 @@
 # silverstripe-imagegallery
 
-[![Build Status](https://travis-ci.org/logicbrush/silverstripe-imagegallery.svg?branch=master)](https://travis-ci.org/logicbrush/silverstripe-imagegallery)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/logicbrush/silverstripe-imagegallery/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/logicbrush/silverstripe-imagegallery/?branch=master)
-[![codecov.io](https://codecov.io/github/logicbrush/silverstripe-imagegallery/coverage.svg?branch=master)](https://codecov.io/github/logicbrush/silverstripe-imagegallery?branch=master)
-
 A module for the SilverStripe CMS which allows you to display a bunch of images
 in a gallery format.
 
@@ -25,3 +21,12 @@ add and reorder images to the page from the "Images" tab in the CMS.
 
 In addition, this module provides a widget for displaying a gallery in a
 sidebar.  Add it to your WidgetArea and select the gallery you wish to display.
+
+
+## Configuration
+
+Select which column to sort the images by, via the "Sort By" dropdown.
+Selecting "Newest First" will sort the images by "Created" in DESC order.
+Selecting "Position" will sort the images by "SortOrder" in ASC order.
+
+Reordering the images manually will only have effect if "Position" is selected.
