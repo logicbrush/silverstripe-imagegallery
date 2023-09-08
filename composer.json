@@ -13,7 +13,7 @@
 		"email": "jflearn@logicbrush.com"
 	}],
 	"require": {
-		"php": "^7.4||^8.0",
+		"php": "^7.2||^8.0",
 		"silverstripe/cms": "^4.0",
 		"jonom/focuspoint": "^4.0",
 		"silverstripe/widgets": "^2.4",
