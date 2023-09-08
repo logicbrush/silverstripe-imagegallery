@@ -35,6 +35,7 @@ class GalleryWidget extends Widget {
 
 	/**
 	 *
+	 * @Metrics( crap = 1 )
 	 * @return unknown
 	 */
 	function getCMSFields() {
@@ -54,6 +55,7 @@ class GalleryWidgetController extends WidgetController {
 
 	/**
 	 *
+	 * @Metrics( crap = 3 )
 	 * @return unknown
 	 */
 	public function Images() {
