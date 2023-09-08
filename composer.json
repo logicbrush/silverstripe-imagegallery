@@ -19,13 +19,6 @@
 		"silverstripe/widgets": "^2.4",
 		"bummzack/sortablefile": "^2.2"
 	},
-	"extra": {
-		"expose": [
-			"css",
-			"images",
-			"javascript"
-		]
-	},
 	"require-dev": {
 		"phpunit/phpunit": "^9.5",
 		"silverstripe/sqlite3": "^2.2",
@@ -41,6 +34,13 @@
 		"psr-4": {
 			"Logicbrush\\ImageGallery\\Tests\\": "tests/"
 		}
+	},
+	"extra": {
+		"expose": [
+			"css",
+			"images",
+			"javascript"
+		]
 	},
 	"config": {
 		"allow-plugins": {
