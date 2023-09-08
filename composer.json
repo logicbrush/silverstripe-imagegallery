@@ -13,18 +13,11 @@
 		"email": "jflearn@logicbrush.com"
 	}],
 	"require": {
-		"php": "^7.4||^8.0",
+		"php": "^7.2||^8.0",
 		"silverstripe/cms": "^4.0",
 		"jonom/focuspoint": "^4.0",
 		"silverstripe/widgets": "^2.4",
 		"bummzack/sortablefile": "^2.2"
-	},
-	"extra": {
-		"expose": [
-			"css",
-			"images",
-			"javascript"
-		]
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^9.5",
@@ -41,6 +34,13 @@
 		"psr-4": {
 			"Logicbrush\\ImageGallery\\Tests\\": "tests/"
 		}
+	},
+	"extra": {
+		"expose": [
+			"css",
+			"images",
+			"javascript"
+		]
 	},
 	"config": {
 		"allow-plugins": {
