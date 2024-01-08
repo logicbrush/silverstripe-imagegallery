@@ -39,7 +39,8 @@
 		"expose": [
 			"css",
 			"images",
-			"javascript"
+			"javascript",
+			"thirdparty"
 		]
 	},
 	"config": {
