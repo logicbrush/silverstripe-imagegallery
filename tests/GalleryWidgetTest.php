@@ -49,7 +49,7 @@ class GalleryWidgetTest extends FunctionalTest
 		$galleryPage->Title = 'Gallery Page';
 		$galleryPage->Content = '<p>Gallery</p>';
 		$galleryPage->write();
-		$galleryPage->publish( 'Stage', 'Live' );
+		$galleryPage->publishSingle();
 
 		$galleryWidget = GalleryWidget::create();
 		$galleryWidget->write();
@@ -67,12 +67,12 @@ class GalleryWidgetTest extends FunctionalTest
 		$image1 = FakeImage::create();
 		$image1->Filename = 'image1.jpg';
 		$image1->write();
-		$image1->publish( 'Stage', 'Live' );
+		$image1->publishSingle();
 
 		$image2 = FakeImage::create();
 		$image2->Filename = 'image2.jpg';
 		$image2->write();
-		$image2->publish( 'Stage', 'Live' );
+		$image2->publishSingle();
 
 		$galleryPage->Images()->add( $image1, ['SortOrder' => 1] );
 		$galleryPage->Images()->add( $image2, ['SortOrder' => 2] );
