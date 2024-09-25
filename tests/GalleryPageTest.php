@@ -35,7 +35,7 @@ class GalleryPageTest extends FunctionalTest
 				'Content' => '<p>Gallery</p>',
 			] );
 		$galleryPage->write();
-		$galleryPage->publish( 'Stage', 'Live' );
+		$galleryPage->publishSingle();
 
 		$response = $this->get( $galleryPage->Link() );
 		$this->assertEquals( 200, $response->getStatusCode() );
@@ -44,17 +44,17 @@ class GalleryPageTest extends FunctionalTest
 		$image1 = FakeImage::create();
 		$image1->Filename = 'image1.jpg';
 		$image1->write();
-		$image1->publish( 'Stage', 'Live' );
+		$image1->publishSingle();
 
 		$image2 = FakeImage::create();
 		$image2->Filename = 'image2.jpg';
 		$image2->write();
-		$image2->publish( 'Stage', 'Live' );
+		$image2->publishSingle();
 
 		$galleryPage->Images()->add( $image1, ['SortOrder' => 1] );
 		$galleryPage->Images()->add( $image2, ['SortOrder' => 2] );
 		$galleryPage->write();
-		$galleryPage->publish( 'Stage', 'Live' );
+		$galleryPage->publishSingle();
 
 		$response = $this->get( $galleryPage->Link() );
 		$this->assertEquals( 200, $response->getStatusCode() );
@@ -83,7 +83,7 @@ class GalleryPageTest extends FunctionalTest
 				'Content' => '<p>Gallery</p>',
 			] );
 		$galleryPage->write();
-		$galleryPage->publish( 'Stage', 'Live' );
+		$galleryPage->publishSingle();
 
 		$content = $galleryPage->GalleryContent();
 		$this->assertStringNotContainsString( 'image-gallery', $content );
@@ -91,17 +91,17 @@ class GalleryPageTest extends FunctionalTest
 		$image1 = FakeImage::create();
 		$image1->Filename = 'image1.jpg';
 		$image1->write();
-		$image1->publish( 'Stage', 'Live' );
+		$image1->publishSingle();
 
 		$image2 = FakeImage::create();
 		$image2->Filename = 'image2.jpg';
 		$image2->write();
-		$image2->publish( 'Stage', 'Live' );
+		$image2->publishSingle();
 
 		$galleryPage->Images()->add( $image1, ['SortOrder' => 1] );
 		$galleryPage->Images()->add( $image2, ['SortOrder' => 2] );
 		$galleryPage->write();
-		$galleryPage->publish( 'Stage', 'Live' );
+		$galleryPage->publishSingle();
 
 		$content = $galleryPage->GalleryContent();
 		$this->assertStringContainsString( 'image-gallery', $content );

@@ -14,16 +14,16 @@
 	}],
 	"require": {
 		"php": "^7.2||^8.0",
-		"silverstripe/cms": "^4.0",
-		"jonom/focuspoint": "^4.0",
-		"silverstripe/widgets": "^2.4",
-		"bummzack/sortablefile": "^2.2"
+		"silverstripe/cms": "^4.0||^5.0",
+		"jonom/focuspoint": "*",
+		"silverstripe/widgets": "*",
+		"bummzack/sortablefile": "*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^9.5",
-		"silverstripe/sqlite3": "^2.2",
-		"logicbrush/metrics": "^0.2.0",
-		"cmrcx/phptidy": "^3.3"
+		"silverstripe/sqlite3": "*",
+		"logicbrush/metrics": "*",
+		"cmrcx/phptidy": "*"
 	},
 	"autoload": {
 		"psr-4": {
