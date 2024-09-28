@@ -23,7 +23,8 @@
 		"phpunit/phpunit": "^9.5",
 		"silverstripe/sqlite3": "*",
 		"logicbrush/metrics": "*",
-		"cmrcx/phptidy": "*"
+		"cmrcx/phptidy": "*",
+		"rector/rector": "^1.2"
 	},
 	"autoload": {
 		"psr-4": {

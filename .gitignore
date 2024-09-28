@@ -1,8 +1,8 @@
-/app
-/vendor
-/resources
-/assets
+resources
 composer.lock
-*.cache
-*.bak
+vendor
 *~
+coverage.xml
+public/assets
+.phpunit.result.cache
+app
