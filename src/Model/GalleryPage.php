@@ -8,8 +8,6 @@
 
 namespace Logicbrush\ImageGallery\Model;
 
-use Page;
-use PageController;
 use Bummzack\SortableFile\Forms\SortableUploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Core\ClassInfo;
@@ -20,10 +18,8 @@ use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\View\Requirements;
 use SilverStripe\View\SSViewer;
 
-class GalleryPage extends Page {
+class GalleryPage extends \Page {
 
-	public $SortBy;
-	public $controller;
 	private static $icon = 'logicbrush/silverstripe-imagegallery:images/treeicons/gallery-page.png';
 	private static $description = 'An image gallery.';
 	private static $singular_name = 'Gallery Page';
@@ -77,7 +73,7 @@ class GalleryPage extends Page {
 	 * @return unknown
 	 */
 	public function getCMSFields() {
-		$fields = null;
+		$fields = parent::getCMSFields();
 
 		$fields->insertAfter( 'Main', Tab::create( 'Gallery' ) );
 		$fields->addFieldToTab( 'Root.Gallery', $imageField = SortableUploadField::create( 'Images', 'Images' ) );
@@ -125,7 +121,6 @@ class GalleryPage extends Page {
 		if ( ClassInfo::hasMethod( Injector::inst()->get( 'Page' ), 'getOGImage' ) ) {
 			return parent::getOGImage();
 		}
-		return null;
 
 	}
 
@@ -156,9 +151,7 @@ class GalleryPage extends Page {
 }
 
 
-class GalleryPageController extends PageController {
-
-	public $Content;
+class GalleryPageController extends \PageController {
 
 	/**
 	 *
