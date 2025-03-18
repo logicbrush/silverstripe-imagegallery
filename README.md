@@ -36,9 +36,9 @@ creation in descending order order.
 
 ## Shortcode
 
-You can insert a gallery into any HTML block using a shorcode similar to the
+You can insert a gallery into any HTML block using a shortcode similar to the
 following:
 
 ```
-[image_gallery id="ID of GalleryPage”"]
+[image_gallery id="{ID of GalleryPage}"]
 ```
