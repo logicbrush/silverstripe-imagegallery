@@ -10,6 +10,7 @@ class ShortcodeProvider implements ShortcodeHandler {
 
 	/**
 	 *
+	 * @Metrics( crap = 2, uncovered = true )
 	 */
 
 
