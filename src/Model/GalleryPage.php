@@ -109,7 +109,7 @@ class GalleryPage extends Page {
 
 	/**
 	 *
-	 * @Metrics( crap = 4.13 )
+	 * @Metrics( crap = 4.07 )
 	 * @return unknown
 	 */
 	public function getOGImage() {
