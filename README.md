@@ -20,13 +20,25 @@ Install the module and you'll have a new page type of "Gallery Page".  You can
 add and reorder images to the page from the "Images" tab in the CMS.
 
 In addition, this module provides a widget for displaying a gallery in a
-sidebar.  Add it to your WidgetArea and select the gallery you wish to display.
+sidebar, and a shortcode for displaying it within an HTML block.
 
+## General Configuration
 
-## Configuration
+The Gallery can be configured through the options on the "Gallery" tab in the
+CMS.  
 
-Select which column to sort the images by, via the "Sort By" dropdown.
-Selecting "Newest First" will sort the images by "Created" in DESC order.
-Selecting "Position" will sort the images by "SortOrder" in ASC order.
+Select your images to be displayed via the"Images" field.  You can drag and drop
+to reorder them.
 
-Reordering the images manually will only have effect if "Position" is selected.
+The "Sort By" dropdown provides additional options for sorting beyond
+"Position". Selecting "Newest First" will sort the images by their date of
+creation in descending order order.
+
+## Shortcode
+
+You can insert a gallery into any HTML block using a shorcode similar to the
+following:
+
+```
+[image_gallery id="ID of GalleryPage”"]
+```
