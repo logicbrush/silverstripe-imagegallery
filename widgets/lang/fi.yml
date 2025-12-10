@@ -1,0 +1,17 @@
+fi:
+  Widget:
+    PLURALNAME: Vimpaimet
+    SINGULARNAME: Vimpain
+  WidgetArea:
+    PLURALNAME: 'Vimpain alueet'
+    SINGULARNAME: 'Vimpain alue'
+  WidgetAreaEditor_ss:
+    AVAILABLE: 'Käytettävissä olevat vimpaimet'
+    AVAILWIDGETS: 'Napsauta vimpaimen otsikkoa alla ottaaksesi se käyttöön tällä sivulla.'
+    INUSE: 'Käytössä olevat vimpaimet'
+    NOAVAIL: 'Tällä hetkellä ei vimpaimia tarjolla.'
+    TOSORT: 'Järjestääksesi käytössä olevat vimpaimet, raahaa ja pudota ne paikoilleen.'
+  WidgetDescription_ss:
+    CLICKTOADDWIDGET: 'Napsauta lisätäksesi tämä vimpain'
+  WidgetEditor_ss:
+    DELETE: Poista

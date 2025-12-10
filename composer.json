@@ -13,18 +13,17 @@
 		"email": "jflearn@logicbrush.com"
 	}],
 	"require": {
-		"php": "^7.2||^8.0",
-		"silverstripe/cms": "^4.0||^5.0",
+		"silverstripe/cms": "^6.0||6.x-dev",
 		"jonom/focuspoint": "*",
 		"silverstripe/widgets": "*",
 		"bummzack/sortablefile": "*"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^9.5",
-		"silverstripe/sqlite3": "*",
-		"logicbrush/metrics": "*",
-		"cmrcx/phptidy": "*",
-		"rector/rector": "^1.2"
+        "cambis/silverstripe-rector": "*",
+		"phpunit/phpunit": "^11.0",
+		"rector/rector": "^1.2",
+		"logicbrush/metrics": "^1.0",
+		"cmrcx/phptidy": "*"
 	},
 	"autoload": {
 		"psr-4": {
@@ -38,10 +37,7 @@
 	},
 	"extra": {
 		"expose": [
-			"css",
-			"images",
-			"javascript",
-			"thirdparty"
+			"client/dist"
 		]
 	},
 	"config": {

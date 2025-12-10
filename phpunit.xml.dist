@@ -1,26 +1,37 @@
-<?xml version="1.0"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/silverstripe/cms/tests/bootstrap.php" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage includeUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">src/</directory>
-    </include>
-    <exclude>
-      <directory suffix=".php">tests/</directory>
-    </exclude>
-    <report>
-      <clover outputFile="clover.xml"/>
-    </report>
-  </coverage>
-  <testsuite name="Default">
-    <directory>tests/</directory>
-  </testsuite>
-  <logging/>
-  <php>
-    <includePath>app/code</includePath>
-    <env name="SS_DATABASE_CLASS" value="SQLite3Database"/>
-    <env name="SS_SQLITE_DATABASE_PATH" value=":memory:"/>
-    <env name="SS_DATABASE_NAME" value="testing"/>
-    <env name="SS_DATABASE_USERNAME" value=""/>
-    <env name="SS_DATABASE_PASSWORD" value=""/>
-  </php>
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/silverstripe/cms/tests/bootstrap.php"
+         cacheDirectory=".phpunit.cache"
+         executionOrder="depends,defects"
+         shortenArraysForExportThreshold="10"
+         requireCoverageMetadata="false"
+         beStrictAboutCoverageMetadata="true"
+         beStrictAboutOutputDuringTests="true"
+         displayDetailsOnPhpunitDeprecations="true"
+         failOnPhpunitDeprecation="true"
+         failOnRisky="true"
+         failOnWarning="true">
+
+    <testsuites>
+        <testsuite name="default">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+
+    <php>
+        <includePath>app/code</includePath>
+        <env name="SS_DATABASE_CLASS" value="MySQLDatabase"/>
+        <env name="SS_DATABASE_SERVER" value="127.0.0.1"/>
+        <env name="SS_DATABASE_NAME" value="silverstripe-imagegallery"/>
+        <env name="SS_DATABASE_USERNAME" value="root"/>
+        <env name="SS_DATABASE_PASSWORD" value="root"/>
+    </php>
+
 </phpunit>
