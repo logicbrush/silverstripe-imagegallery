@@ -16,7 +16,7 @@ class FakeImage extends Image {
 	 *
 	 * @return unknown
 	 */
-	public function exists() {
+	public function exists() : bool {
 		return true;
 	}
 
